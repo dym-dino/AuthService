@@ -5,10 +5,4 @@ logging
    :members:
    :undoc-members:
    :show-inheritance:
-   :exclude-members: PostgresLogHandler
-
-.. autoclass:: app.logger.logging.PostgresLogHandler
-   :members:
-   :undoc-members:
-   :show-inheritance:
 

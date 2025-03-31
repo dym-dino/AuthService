@@ -1,10 +1,6 @@
 admin
 =====
 
-Admin Router
-
-Configures the FastAPI router with admin token verification dependency and includes texts and users routes.
-
 .. contents::
    :local:
    :depth: 2

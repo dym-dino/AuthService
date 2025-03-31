@@ -40,6 +40,7 @@ docker-compose up --build
 
 - Swagger Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 - ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- Sphinx Docs: [http://localhost:8000/code_docs](http://localhost:8000/code_docs)
 - Requires HTTP Basic Auth from `.env`
 
 ---

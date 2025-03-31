@@ -19,6 +19,7 @@ from app.routers.admin import router as admin_router
 from app.routers.public import router as public_router
 from app.routers.auth import router as auth_router
 from app.services.backup import run_backup
+from app.utils.auth.static_protection import ProtectedStaticFiles
 from app.utils.auth.swagger_auth import get_swagger_basic_auth
 from app.utils.rate_limit import limiter
 
@@ -76,6 +77,7 @@ def get_redoc_documentation(credentials: str = Depends(get_swagger_basic_auth)):
         title=f"{app.title} - ReDoc"
     )
 
+app.mount("/code_docs", ProtectedStaticFiles(directory=settings.DOCS_DIR, html=True), name="code_docs")
 
 # --------------------------------------------------------------------------------
 # PING ENDPOINT

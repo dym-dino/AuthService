@@ -98,31 +98,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-app.routers.public.ping">
-<span id="ping"></span><h1>ping<a class="headerlink" href="#module-app.routers.public.ping" title="Link to this heading"></a></h1>
-<p>Public Auth</p>
-<p>Provides user-accessible endpoints such as profile check.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="app.routers.public.ping.get_current_user">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.routers.public.ping.</span></span><span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(verify_token)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/app/routers/public/ping.html#get_current_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routers.public.ping.get_current_user" title="Link to this definition"></a></dt>
-<dd><p>Retrieve the current authenticated user’s payload.</p>
-<ul class="simple">
-<li><p>Requires a valid Bearer access token in the Authorization header.</p></li>
-<li><dl class="simple">
-<dt>Returns the decoded JWT token payload containing:</dt><dd><ul>
-<li><p><cite>sub</cite>: subject (typically username)</p></li>
-<li><p><cite>role</cite>: user role</p></li>
-<li><p><cite>permissions</cite>: list of permissions</p></li>
-<li><p><cite>exp</cite>: expiration timestamp</p></li>
-<li><p><cite>type</cite>: token type (should be ‘access’)</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>Useful for user-facing applications to confirm identity and role.</p>
-</dd></dl>
-
+  <section id="ping">
+<h1>ping<a class="headerlink" href="#ping" title="Link to this heading"></a></h1>
 </section>
 
 

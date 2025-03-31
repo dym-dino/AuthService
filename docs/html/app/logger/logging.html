@@ -92,44 +92,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-app.logger.logging">
-<span id="logging"></span><h1>logging<a class="headerlink" href="#module-app.logger.logging" title="Link to this heading"></a></h1>
-<p>Logging Configuration</p>
-<p>This module configures a logger to output logs to both the console and PostgreSQL.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="app.logger.logging.PostgresLogHandler">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">PostgresLogHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/logger/logging.html#PostgresLogHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.logger.logging.PostgresLogHandler" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Handler</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.logger.logging.PostgresLogHandler.create_table">
-<span class="sig-name descname"><span class="pre">create_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/logger/logging.html#PostgresLogHandler.create_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.logger.logging.PostgresLogHandler.create_table" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.logger.logging.PostgresLogHandler.emit">
-<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/logger/logging.html#PostgresLogHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.logger.logging.PostgresLogHandler.emit" title="Link to this definition"></a></dt>
-<dd><p>Do whatever it takes to actually log the specified logging record.</p>
-<p>This version is intended to be implemented by subclasses and so
-raises a NotImplementedError.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.logger.logging.PostgresLogHandler.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/logger/logging.html#PostgresLogHandler.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.logger.logging.PostgresLogHandler.close" title="Link to this definition"></a></dt>
-<dd><p>Tidy up any resources used by the handler.</p>
-<p>This version removes the handler from an internal map of handlers,
-_handlers, which is used for handler lookup by name. Subclasses
-should ensure that this gets called from overridden close()
-methods.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.logger.logging.PostgresLogHandler.setup">
-<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/logger/logging.html#PostgresLogHandler.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.logger.logging.PostgresLogHandler.setup" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+  <section id="logging">
+<h1>logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h1>
 </section>
 
 
