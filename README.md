@@ -2,32 +2,8 @@
 
 ## 🔐 Authorization microservice with FastAPI, PostgreSQL, JWT, and Docker
 
-This service handles secure authentication and role-based access control for your web application. Includes production-grade practices: refresh tokens, Swagger BasicAuth, centralized logging, backups, and rate-limiting.
-
----
-
-## 📁 Project Structure
-
-```
-.
-├── .env.example                  # Example environment configuration
-├── LICENSE                      # MIT License
-├── README.md                    # Project overview & usage
-├── Dockerfile                   # Backend Docker image
-├── docker-compose.yml           # Full-stack Docker orchestration
-├── app
-│   ├── config.py                # Environment and secrets
-│   ├── database.py             # SQLAlchemy models and DB connection
-│   ├── logger                  # Logs to PostgreSQL and console
-│   ├── main.py                 # FastAPI app entrypoint
-│   ├── models                  # Pydantic schemas
-│   ├── routers                 # API routes
-│   │   ├── auth.py             # Token, refresh logic
-│   │   ├── admin/              # Admin user management
-│   │   └── public/auth.py      # GET /me endpoint
-│   ├── services                # Backup system
-│   └── utils                   # JWT, hash, swagger protection, base_handler, rate limiting
-```
+This service handles secure authentication and role-based access control for your web application. Includes
+production-grade practices: refresh tokens, Swagger BasicAuth, centralized logging, backups, and rate-limiting.
 
 ---
 
@@ -49,8 +25,8 @@ This service handles secure authentication and role-based access control for you
 ### 1. Clone repository and setup environment
 
 ```bash
-git clone https://github.com/dym-dino/auth-service
-cd auth-service
+git clone https://github.com/dym-dino/AuthService.git
+cd AuthService
 cp .env.example .env
 ```
 
@@ -68,15 +44,15 @@ docker-compose up --build
 
 ---
 
-## 🔐 Endpoints
+## 🔐 Main endpoints
 
-| Method | Endpoint                      | Description                     |
-|--------|-------------------------------|---------------------------------|
-| POST   | `/api/v1/auth/token`          | Get access + refresh token      |
-| POST   | `/api/v1/auth/refresh`        | Get new access token            |
-| GET    | `/api/v1/public/auth/me`      | Get user info from token        |
-| POST   | `/api/v1/admin/create_admin`  | Create new admin/operator       |
-| DELETE | `/api/v1/admin/remove_admin`  | Remove admin/operator           |
+| Method | Endpoint                     | Description                |
+|--------|------------------------------|----------------------------|
+| POST   | `/api/v1/token`              | Get access + refresh token |
+| POST   | `/api/v1/refresh`            | Get new access token       |
+| GET    | `/api/v1/me`                 | Get user info from token   |
+| POST   | `/api/v1/admin/create_admin` | Create new admin/operator  |
+| DELETE | `/api/v1/admin/remove_admin` | Remove admin/operator      |
 
 ---
 
@@ -85,9 +61,11 @@ docker-compose up --build
 Use Swagger or Postman to test each endpoint. Tokens are passed via `Authorization: Bearer <token>`.
 
 Run tests with:
+
 ```bash
-pytest tests/
+pytest -v
 ```
+
 ---
 
 ## 🧾 License

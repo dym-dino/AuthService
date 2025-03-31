@@ -1,0 +1,15 @@
+Auth Service Documentation
+==========================
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   .venv/index
+   app/index
+

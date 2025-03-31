@@ -1,0 +1,14 @@
+result
+======
+
+.. automodule:: app.models.result
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: UniformResponse
+
+.. autoclass:: app.models.result.UniformResponse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

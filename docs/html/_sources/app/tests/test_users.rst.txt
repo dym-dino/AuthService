@@ -1,0 +1,8 @@
+test_users
+==========
+
+.. automodule:: app.tests.test_users
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

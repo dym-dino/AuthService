@@ -1,0 +1,29 @@
+user
+====
+
+.. automodule:: app.models.user
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: User,UserCreate,UserInDB,UsersBase
+
+.. autoclass:: app.models.user.User
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: app.models.user.UserCreate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: app.models.user.UserInDB
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: app.models.user.UsersBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,8 @@
+ping
+====
+
+.. automodule:: app.routers.public.ping
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

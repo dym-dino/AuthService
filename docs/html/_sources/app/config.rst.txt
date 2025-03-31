@@ -1,0 +1,14 @@
+config
+======
+
+.. automodule:: app.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: Settings
+
+.. autoclass:: app.config.Settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

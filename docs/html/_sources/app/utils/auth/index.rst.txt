@@ -1,0 +1,21 @@
+auth
+====
+
+Auth Module
+
+Provides utility functions and helpers used across the application
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   hash
+   jwt_handler
+   static_protection
+   swagger_auth
+

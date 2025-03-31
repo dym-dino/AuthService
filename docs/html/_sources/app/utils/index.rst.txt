@@ -1,0 +1,20 @@
+utils
+=====
+
+Utils Module
+
+Provides utility functions and helpers used across the application
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   auth/index
+   base_handler
+   rate_limit
+

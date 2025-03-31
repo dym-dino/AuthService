@@ -58,7 +58,7 @@ class PostgresLogHandler(logging.Handler):
 # LOGGER CONFIGURATION
 
 # LOGGER CONFIGURATION
-logger = logging.getLogger("iccem_logger")
+logger = logging.getLogger("auth_logger")
 logger.setLevel(logging.INFO)
 
 console_handler = logging.StreamHandler()

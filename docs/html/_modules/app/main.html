@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.main &mdash; Auth Service v1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=76e2d817"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Auth Service
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">app</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Auth Service</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">app.main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for app.main</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main Application</span>
+
+<span class="sd">Creates a FastAPI instance, connects routers, applies rate limiter, CORS, docs, and startup tasks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># IMPORT LIBRARIES</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">apscheduler.schedulers.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncIOScheduler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.openapi.docs</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_redoc_html</span><span class="p">,</span> <span class="n">get_swagger_ui_html</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">slowapi.middleware</span><span class="w"> </span><span class="kn">import</span> <span class="n">SlowAPIMiddleware</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.routers.admin</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span> <span class="k">as</span> <span class="n">admin_router</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.routers.public</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span> <span class="k">as</span> <span class="n">public_router</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.routers.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span> <span class="k">as</span> <span class="n">auth_router</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.services.backup</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_backup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.utils.auth.swagger_auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_swagger_basic_auth</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.utils.rate_limit</span><span class="w"> </span><span class="kn">import</span> <span class="n">limiter</span>
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># APPLICATION INSTANCE</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Auth API&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+    <span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># CONFIGURATION</span>
+
+<span class="c1"># Rate Limiter Middleware</span>
+<span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">limiter</span> <span class="o">=</span> <span class="n">limiter</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">SlowAPIMiddleware</span><span class="p">)</span>
+
+<span class="c1"># CORS Middleware</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># INCLUDE ROUTERS</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">admin_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/admin&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">public_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">auth_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># DOCUMENTATION ENDPOINTS</span>
+
+<div class="viewcode-block" id="get_documentation">
+<a class="viewcode-back" href="../../app/main.html#app.main.get_documentation">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_documentation</span><span class="p">(</span><span class="n">credentials</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_swagger_basic_auth</span><span class="p">)):</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2"> - Docs&quot;</span><span class="p">,</span>
+        <span class="n">swagger_js_url</span><span class="o">=</span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js&quot;</span><span class="p">,</span>
+        <span class="n">swagger_css_url</span><span class="o">=</span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css&quot;</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_redoc_documentation">
+<a class="viewcode-back" href="../../app/main.html#app.main.get_redoc_documentation">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_redoc_documentation</span><span class="p">(</span><span class="n">credentials</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_swagger_basic_auth</span><span class="p">)):</span>
+    <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2"> - ReDoc&quot;</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># PING ENDPOINT</span>
+
+<div class="viewcode-block" id="ping">
+<a class="viewcode-back" href="../../app/main.html#app.main.ping">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ping</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Auth API is running&quot;</span><span class="p">}</span></div>
+
+
+
+<span class="c1"># --------------------------------------------------------------------------------</span>
+<span class="c1"># BACKGROUND SCHEDULER</span>
+
+<div class="viewcode-block" id="start_scheduler_if_not_running">
+<a class="viewcode-back" href="../../app/main.html#app.main.start_scheduler_if_not_running">[docs]</a>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start_scheduler_if_not_running</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">app.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span><span class="p">,</span> <span class="n">postgres_handler</span>
+    <span class="n">postgres_handler</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">AsyncIOScheduler</span><span class="p">()</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="n">run_backup</span><span class="p">,</span> <span class="s2">&quot;cron&quot;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Scheduler started on this worker.&quot;</span><span class="p">)</span>
+    <span class="n">run_backup</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="startup_event">
+<a class="viewcode-back" href="../../app/main.html#app.main.startup_event">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">startup_event</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">TESTING</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">await</span> <span class="n">start_scheduler_if_not_running</span><span class="p">()</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">reload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Дымников Михаил (dym-dino).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

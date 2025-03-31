@@ -1,0 +1,24 @@
+app
+===
+
+ICCEM backend API
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   logger/index
+   models/index
+   routers/index
+   services/index
+   tests/index
+   utils/index
+   config
+   database
+   main
+

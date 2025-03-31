@@ -1,0 +1,19 @@
+token
+=====
+
+.. automodule:: app.models.token
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: RefreshRequest,TokenRequest
+
+.. autoclass:: app.models.token.RefreshRequest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: app.models.token.TokenRequest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

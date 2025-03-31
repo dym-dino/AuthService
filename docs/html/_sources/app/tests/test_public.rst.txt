@@ -1,0 +1,8 @@
+test_public
+===========
+
+.. automodule:: app.tests.test_public
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,8 @@
+swagger_auth
+============
+
+.. automodule:: app.utils.auth.swagger_auth
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

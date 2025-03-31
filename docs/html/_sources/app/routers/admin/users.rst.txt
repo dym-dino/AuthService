@@ -1,0 +1,8 @@
+users
+=====
+
+.. automodule:: app.routers.admin.users
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

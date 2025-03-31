@@ -1,0 +1,20 @@
+routers
+=======
+
+Routers Package
+
+Contains API route definitions for various modules.
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   admin/index
+   public/index
+   auth
+

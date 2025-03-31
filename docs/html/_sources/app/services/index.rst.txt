@@ -1,0 +1,18 @@
+services
+========
+
+Services Package
+
+Provides auxiliary services for the application.
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
+
+   backup
+

@@ -1,0 +1,8 @@
+conftest
+========
+
+.. automodule:: app.tests.conftest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

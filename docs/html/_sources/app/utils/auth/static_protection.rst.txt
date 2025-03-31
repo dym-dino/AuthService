@@ -1,0 +1,14 @@
+static_protection
+=================
+
+.. automodule:: app.utils.auth.static_protection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: ProtectedStaticFiles
+
+.. autoclass:: app.utils.auth.static_protection.ProtectedStaticFiles
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

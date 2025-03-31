@@ -1,0 +1,8 @@
+jwt_handler
+===========
+
+.. automodule:: app.utils.auth.jwt_handler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
