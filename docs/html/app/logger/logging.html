@@ -92,8 +92,972 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="logging">
-<h1>logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h1>
+  <section id="module-app.logger.logging">
+<span id="logging"></span><h1>logging<a class="headerlink" href="#module-app.logger.logging" title="Link to this heading"></a></h1>
+<p>Logging package for Python. Based on PEP 282 and comments thereto in
+comp.lang.python.</p>
+<p>Copyright (C) 2001-2022 Vinay Sajip. All Rights Reserved.</p>
+<p>To use, simply ‘import logging’ and log away!</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.BufferingFormatter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">BufferingFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.BufferingFormatter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A formatter suitable for formatting a number of records.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.BufferingFormatter.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">records</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.BufferingFormatter.format" title="Link to this definition"></a></dt>
+<dd><p>Format the specified records and return the result as a string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.BufferingFormatter.formatFooter">
+<span class="sig-name descname"><span class="pre">formatFooter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">records</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.BufferingFormatter.formatFooter" title="Link to this definition"></a></dt>
+<dd><p>Return the footer string for the specified records.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.BufferingFormatter.formatHeader">
+<span class="sig-name descname"><span class="pre">formatHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">records</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.BufferingFormatter.formatHeader" title="Link to this definition"></a></dt>
+<dd><p>Return the header string for the specified records.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.FileHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'a'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.FileHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.logger.logging.StreamHandler" title="logging.StreamHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamHandler</span></code></a></p>
+<p>A handler class which writes formatted logging records to disk files.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.FileHandler.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.FileHandler.close" title="Link to this definition"></a></dt>
+<dd><p>Closes the stream.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.FileHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.FileHandler.emit" title="Link to this definition"></a></dt>
+<dd><p>Emit a record.</p>
+<p>If the stream was not opened because ‘delay’ was specified in the
+constructor, open it before calling the superclass’s emit.</p>
+<p>If stream is not open, current mode is ‘w’ and <cite>_closed=True</cite>, record
+will not be emitted (see Issue #42378).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.Filter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Filter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Filter instances are used to perform arbitrary filtering of LogRecords.</p>
+<p>Loggers and Handlers can optionally use Filter instances to filter
+records as desired. The base filter class only allows events which are
+below a certain point in the logger hierarchy. For example, a filter
+initialized with “A.B” will allow events logged by loggers “A.B”,
+“A.B.C”, “A.B.C.D”, “A.B.D” etc. but not “A.BB”, “B.A.B” etc. If
+initialized with the empty string, all events are passed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Filter.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Filter.filter" title="Link to this definition"></a></dt>
+<dd><p>Determine if the specified record is to be logged.</p>
+<p>Returns True if the record should be logged, or False otherwise.
+If deemed appropriate, the record may be modified in-place.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">Formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Formatter instances are used to convert a LogRecord to text.</p>
+<p>Formatters need to know how a LogRecord is constructed. They are
+responsible for converting a LogRecord to (usually) a string which can
+be interpreted by either a human or an external system. The base Formatter
+allows a formatting string to be specified. If none is supplied, the
+style-dependent default value, “%(message)s”, “{message}”, or
+“${message}”, is used.</p>
+<p>The Formatter can be initialized with a format string which makes use of
+knowledge of the LogRecord attributes - e.g. the default value mentioned
+above makes use of the fact that the user’s message and arguments are pre-
+formatted into a LogRecord’s message attribute. Currently, the useful
+attributes in a LogRecord are described by:</p>
+<p>%(name)s            Name of the logger (logging channel)
+%(levelno)s         Numeric logging level for the message (DEBUG, INFO,</p>
+<blockquote>
+<div><p>WARNING, ERROR, CRITICAL)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>%(levelname)s       Text logging level for the message (“DEBUG”, “INFO”,</dt><dd><p>“WARNING”, “ERROR”, “CRITICAL”)</p>
+</dd>
+<dt>%(pathname)s        Full pathname of the source file where the logging</dt><dd><p>call was issued (if available)</p>
+</dd>
+</dl>
+<p>%(filename)s        Filename portion of pathname
+%(module)s          Module (name portion of filename)
+%(lineno)d          Source line number where the logging call was issued</p>
+<blockquote>
+<div><p>(if available)</p>
+</div></blockquote>
+<p>%(funcName)s        Function name
+%(created)f         Time when the LogRecord was created (time.time()</p>
+<blockquote>
+<div><p>return value)</p>
+</div></blockquote>
+<p>%(asctime)s         Textual time when the LogRecord was created
+%(msecs)d           Millisecond portion of the creation time
+%(relativeCreated)d Time in milliseconds when the LogRecord was created,</p>
+<blockquote>
+<div><p>relative to the time the logging module was loaded
+(typically at application startup time)</p>
+</div></blockquote>
+<p>%(thread)d          Thread ID (if available)
+%(threadName)s      Thread name (if available)
+%(taskName)s        Task name (if available)
+%(process)d         Process ID (if available)
+%(message)s         The result of record.getMessage(), computed just as</p>
+<blockquote>
+<div><p>the record is emitted</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.converter" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>localtime([seconds]) -&gt; (tm_year,tm_mon,tm_mday,tm_hour,tm_min,</dt><dd><p>tm_sec,tm_wday,tm_yday,tm_isdst)</p>
+</dd>
+</dl>
+<p>Convert seconds since the Epoch to a time tuple expressing local time.
+When ‘seconds’ is not passed in, convert the current time instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.default_msec_format">
+<span class="sig-name descname"><span class="pre">default_msec_format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%s,%03d'</span></em><a class="headerlink" href="#app.logger.logging.Formatter.default_msec_format" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.default_time_format">
+<span class="sig-name descname"><span class="pre">default_time_format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%Y-%m-%d</span> <span class="pre">%H:%M:%S'</span></em><a class="headerlink" href="#app.logger.logging.Formatter.default_time_format" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.format" title="Link to this definition"></a></dt>
+<dd><p>Format the specified record as text.</p>
+<p>The record’s attribute dictionary is used as the operand to a
+string formatting operation which yields the returned string.
+Before formatting the dictionary, a couple of preparatory steps
+are carried out. The message attribute of the record is computed
+using LogRecord.getMessage(). If the formatting string uses the
+time (as determined by a call to usesTime(), formatTime() is
+called to format the event time. If there is exception information,
+it is formatted using formatException() and appended to the message.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.formatException">
+<span class="sig-name descname"><span class="pre">formatException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ei</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.formatException" title="Link to this definition"></a></dt>
+<dd><p>Format and return the specified exception information as a string.</p>
+<p>This default implementation just uses
+traceback.print_exception()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.formatMessage">
+<span class="sig-name descname"><span class="pre">formatMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.formatMessage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.formatStack">
+<span class="sig-name descname"><span class="pre">formatStack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.formatStack" title="Link to this definition"></a></dt>
+<dd><p>This method is provided as an extension point for specialized
+formatting of stack information.</p>
+<p>The input data is a string as returned from a call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">traceback.print_stack()</span></code>, but with the last trailing newline
+removed.</p>
+<p>The base implementation just returns the value passed in.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.formatTime">
+<span class="sig-name descname"><span class="pre">formatTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.formatTime" title="Link to this definition"></a></dt>
+<dd><p>Return the creation time of the specified LogRecord as formatted text.</p>
+<p>This method should be called from format() by a formatter which
+wants to make use of a formatted time. This method can be overridden
+in formatters to provide for any specific requirement, but the
+basic behaviour is as follows: if datefmt (a string) is specified,
+it is used with time.strftime() to format the creation time of the
+record. Otherwise, an ISO8601-like (or RFC 3339-like) format is used.
+The resulting string is returned. This function uses a user-configurable
+function to convert the creation time to a tuple. By default,
+time.localtime() is used; to change this for a particular formatter
+instance, set the ‘converter’ attribute to a function with the same
+signature as time.localtime() or time.gmtime(). To change it for all
+formatters, for example if you want all logging times to be shown in GMT,
+set the ‘converter’ attribute in the Formatter class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Formatter.usesTime">
+<span class="sig-name descname"><span class="pre">usesTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Formatter.usesTime" title="Link to this definition"></a></dt>
+<dd><p>Check if the format uses the creation time of the record.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.Handler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">Handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Filterer</span></code></p>
+<p>Handler instances dispatch logging events to specific destinations.</p>
+<p>The base handler class. Acts as a placeholder which defines the Handler
+interface. Handlers can optionally use Formatter instances to format
+records as desired. By default, no formatter is specified; in this case,
+the ‘raw’ message as determined by record.message is logged.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.acquire">
+<span class="sig-name descname"><span class="pre">acquire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.acquire" title="Link to this definition"></a></dt>
+<dd><p>Acquire the I/O thread lock.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.close" title="Link to this definition"></a></dt>
+<dd><p>Tidy up any resources used by the handler.</p>
+<p>This version removes the handler from an internal map of handlers,
+_handlers, which is used for handler lookup by name. Subclasses
+should ensure that this gets called from overridden close()
+methods.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.createLock">
+<span class="sig-name descname"><span class="pre">createLock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.createLock" title="Link to this definition"></a></dt>
+<dd><p>Acquire a thread lock for serializing access to the underlying I/O.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.emit" title="Link to this definition"></a></dt>
+<dd><p>Do whatever it takes to actually log the specified logging record.</p>
+<p>This version is intended to be implemented by subclasses and so
+raises a NotImplementedError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.flush" title="Link to this definition"></a></dt>
+<dd><p>Ensure all logging output has been flushed.</p>
+<p>This version does nothing and is intended to be implemented by
+subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.format" title="Link to this definition"></a></dt>
+<dd><p>Format the specified record.</p>
+<p>If a formatter is set, use it. Otherwise, use the default formatter
+for the module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.get_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.handle" title="Link to this definition"></a></dt>
+<dd><p>Conditionally emit the specified logging record.</p>
+<p>Emission depends on filters which may have been added to the handler.
+Wrap the actual emission of the record with acquisition/release of
+the I/O thread lock.</p>
+<p>Returns an instance of the log record that was emitted
+if it passed all filters, otherwise a false value is returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.handleError">
+<span class="sig-name descname"><span class="pre">handleError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.handleError" title="Link to this definition"></a></dt>
+<dd><p>Handle errors which occur during an emit() call.</p>
+<p>This method should be called from handlers when an exception is
+encountered during an emit() call. If raiseExceptions is false,
+exceptions get silently ignored. This is what is mostly wanted
+for a logging system - most users will not care about errors in
+the logging system, they are more interested in application errors.
+You could, however, replace this with a custom handler if you wish.
+The record which was being processed is passed in to this method.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#app.logger.logging.Handler.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.release">
+<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.release" title="Link to this definition"></a></dt>
+<dd><p>Release the I/O thread lock.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.setFormatter">
+<span class="sig-name descname"><span class="pre">setFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.setFormatter" title="Link to this definition"></a></dt>
+<dd><p>Set the formatter for this handler.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.setLevel">
+<span class="sig-name descname"><span class="pre">setLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.setLevel" title="Link to this definition"></a></dt>
+<dd><p>Set the logging level of this handler.  level must be an int or a str.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Handler.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Handler.set_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.LogRecord">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">LogRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sinfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LogRecord" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A LogRecord instance represents an event being logged.</p>
+<p>LogRecord instances are created every time something is logged. They
+contain all the information pertinent to the event being logged. The
+main information passed in is in msg and args, which are combined
+using str(msg) % args to create the message field of the record. The
+record also includes information such as when the record was created,
+the source line where the logging call was made, and any exception
+information to be logged.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LogRecord.getMessage">
+<span class="sig-name descname"><span class="pre">getMessage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LogRecord.getMessage" title="Link to this definition"></a></dt>
+<dd><p>Return the message for this LogRecord.</p>
+<p>Return the message for this LogRecord after merging any user-supplied
+arguments with the message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.Logger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Filterer</span></code></p>
+<p>Instances of the Logger class represent a single logging channel. A
+“logging channel” indicates an area of an application. Exactly how an
+“area” is defined is up to the application developer. Since an
+application can have any number of areas, logging channels are identified
+by a unique string. Application areas can be nested (e.g. an area
+of “input processing” might include sub-areas “read CSV files”, “read
+XLS files” and “read Gnumeric files”). To cater for this natural nesting,
+channel names are organized into a namespace hierarchy where levels are
+separated by periods, much like the Java or Python package namespace. So
+in the instance given above, channel names might be “input” for the upper
+level, and “input.csv”, “input.xls” and “input.gnu” for the sub-levels.
+There is no arbitrary limit to the depth of nesting.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.addHandler">
+<span class="sig-name descname"><span class="pre">addHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdlr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.addHandler" title="Link to this definition"></a></dt>
+<dd><p>Add the specified handler to this logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.callHandlers">
+<span class="sig-name descname"><span class="pre">callHandlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.callHandlers" title="Link to this definition"></a></dt>
+<dd><p>Pass a record to all relevant handlers.</p>
+<p>Loop through all handlers for this logger and its parents in the
+logger hierarchy. If no handler was found, output a one-off error
+message to sys.stderr. Stop searching up the hierarchy whenever a
+logger with the “propagate” attribute set to zero is found - that
+will be the last logger whose handlers are called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.critical">
+<span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.critical" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with severity ‘CRITICAL’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.critical(“Houston, we have a %s”, “major disaster”, exc_info=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.debug" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with severity ‘DEBUG’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.debug(“Houston, we have a %s”, “thorny problem”, exc_info=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.error" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with severity ‘ERROR’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.error(“Houston, we have a %s”, “major problem”, exc_info=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.exception">
+<span class="sig-name descname"><span class="pre">exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.exception" title="Link to this definition"></a></dt>
+<dd><p>Convenience method for logging an ERROR with exception information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.fatal">
+<span class="sig-name descname"><span class="pre">fatal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.fatal" title="Link to this definition"></a></dt>
+<dd><p>Don’t use this method, use critical() instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.findCaller">
+<span class="sig-name descname"><span class="pre">findCaller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stacklevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.findCaller" title="Link to this definition"></a></dt>
+<dd><p>Find the stack frame of the caller so that we can note the source
+file name, line number and function name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.getChild">
+<span class="sig-name descname"><span class="pre">getChild</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.getChild" title="Link to this definition"></a></dt>
+<dd><p>Get a logger which is a descendant to this one.</p>
+<p>This is a convenience method, such that</p>
+<p>logging.getLogger(‘abc’).getChild(‘def.ghi’)</p>
+<p>is the same as</p>
+<p>logging.getLogger(‘abc.def.ghi’)</p>
+<p>It’s useful, for example, when the parent logger is named using
+__name__ rather than a literal string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.getChildren">
+<span class="sig-name descname"><span class="pre">getChildren</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.getChildren" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.getEffectiveLevel">
+<span class="sig-name descname"><span class="pre">getEffectiveLevel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.getEffectiveLevel" title="Link to this definition"></a></dt>
+<dd><p>Get the effective level for this logger.</p>
+<p>Loop through this logger and its parents in the logger hierarchy,
+looking for a non-zero logging level. Return the first one found.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.handle" title="Link to this definition"></a></dt>
+<dd><p>Call the handlers for the specified record.</p>
+<p>This method is used for unpickled records received from a socket, as
+well as those created locally. Logger-level filtering is applied.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.hasHandlers">
+<span class="sig-name descname"><span class="pre">hasHandlers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.hasHandlers" title="Link to this definition"></a></dt>
+<dd><p>See if this logger has any handlers configured.</p>
+<p>Loop through all handlers for this logger and its parents in the
+logger hierarchy. Return True if a handler was found, else False.
+Stop searching up the hierarchy whenever a logger with the “propagate”
+attribute set to zero is found - that will be the last logger which
+is checked for the existence of handlers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.info" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with severity ‘INFO’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.info(“Houston, we have a %s”, “notable problem”, exc_info=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.isEnabledFor">
+<span class="sig-name descname"><span class="pre">isEnabledFor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.isEnabledFor" title="Link to this definition"></a></dt>
+<dd><p>Is this logger enabled for level ‘level’?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.log" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with the integer severity ‘level’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.log(level, “We have a %s”, “mysterious problem”, exc_info=True)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.makeRecord">
+<span class="sig-name descname"><span class="pre">makeRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sinfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.makeRecord" title="Link to this definition"></a></dt>
+<dd><p>A factory method which can be overridden in subclasses to create
+specialized LogRecords.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.manager">
+<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;logging.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.logger.logging.Logger.manager" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.removeHandler">
+<span class="sig-name descname"><span class="pre">removeHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdlr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.removeHandler" title="Link to this definition"></a></dt>
+<dd><p>Remove the specified handler from this logger.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.root">
+<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;RootLogger</span> <span class="pre">root</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#app.logger.logging.Logger.root" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.setLevel">
+<span class="sig-name descname"><span class="pre">setLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.setLevel" title="Link to this definition"></a></dt>
+<dd><p>Set the logging level of this logger.  level must be an int or a str.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.warn">
+<span class="sig-name descname"><span class="pre">warn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.warn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.Logger.warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.Logger.warning" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with severity ‘WARNING’.</p>
+<p>To pass exception information, use the keyword argument exc_info with
+a true value, e.g.</p>
+<p>logger.warning(“Houston, we have a %s”, “bit of a problem”, exc_info=True)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">LoggerAdapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An adapter for loggers which makes it easier to specify contextual
+information in logging output.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.critical">
+<span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.critical" title="Link to this definition"></a></dt>
+<dd><p>Delegate a critical call to the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.debug" title="Link to this definition"></a></dt>
+<dd><p>Delegate a debug call to the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.error" title="Link to this definition"></a></dt>
+<dd><p>Delegate an error call to the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.exception">
+<span class="sig-name descname"><span class="pre">exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.exception" title="Link to this definition"></a></dt>
+<dd><p>Delegate an exception call to the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.getEffectiveLevel">
+<span class="sig-name descname"><span class="pre">getEffectiveLevel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.getEffectiveLevel" title="Link to this definition"></a></dt>
+<dd><p>Get the effective level for the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.hasHandlers">
+<span class="sig-name descname"><span class="pre">hasHandlers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.hasHandlers" title="Link to this definition"></a></dt>
+<dd><p>See if the underlying logger has any handlers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.info" title="Link to this definition"></a></dt>
+<dd><p>Delegate an info call to the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.isEnabledFor">
+<span class="sig-name descname"><span class="pre">isEnabledFor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.isEnabledFor" title="Link to this definition"></a></dt>
+<dd><p>Is this logger enabled for level ‘level’?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.log" title="Link to this definition"></a></dt>
+<dd><p>Delegate a log call to the underlying logger, after adding
+contextual information from this adapter instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.manager">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">manager</span></span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.manager" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.process" title="Link to this definition"></a></dt>
+<dd><p>Process the logging message and keyword arguments passed in to
+a logging call to insert contextual information. You can either
+manipulate the message itself, the keyword args or both. Return
+the message and kwargs modified (or not) to suit your needs.</p>
+<p>Normally, you’ll only need to override this one method in a
+LoggerAdapter subclass for your specific needs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.setLevel">
+<span class="sig-name descname"><span class="pre">setLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.setLevel" title="Link to this definition"></a></dt>
+<dd><p>Set the specified level on the underlying logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.warn">
+<span class="sig-name descname"><span class="pre">warn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.warn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.LoggerAdapter.warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.LoggerAdapter.warning" title="Link to this definition"></a></dt>
+<dd><p>Delegate a warning call to the underlying logger.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.NullHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">NullHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.NullHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.logger.logging.Handler" title="logging.Handler"><code class="xref py py-class docutils literal notranslate"><span class="pre">Handler</span></code></a></p>
+<p>This handler does nothing. It’s intended to be used to avoid the
+“No handlers could be found for logger XXX” one-off warning. This is
+important for library code, which may contain code to log events. If a user
+of the library does not configure logging, the one-off warning might be
+produced; to avoid this, the library developer simply needs to instantiate
+a NullHandler and add it to the top-level logger of the library module or
+package.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.NullHandler.createLock">
+<span class="sig-name descname"><span class="pre">createLock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.NullHandler.createLock" title="Link to this definition"></a></dt>
+<dd><p>Acquire a thread lock for serializing access to the underlying I/O.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.NullHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.NullHandler.emit" title="Link to this definition"></a></dt>
+<dd><p>Stub.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.NullHandler.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.NullHandler.handle" title="Link to this definition"></a></dt>
+<dd><p>Stub.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.logger.logging.StreamHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">StreamHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.StreamHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.logger.logging.Handler" title="logging.Handler"><code class="xref py py-class docutils literal notranslate"><span class="pre">Handler</span></code></a></p>
+<p>A handler class which writes logging records, appropriately formatted,
+to a stream. Note that this class does not close the stream, as
+sys.stdout or sys.stderr may be used.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.StreamHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.StreamHandler.emit" title="Link to this definition"></a></dt>
+<dd><p>Emit a record.</p>
+<p>If a formatter is specified, it is used to format the record.
+The record is then written to the stream with a trailing newline.  If
+exception information is present, it is formatted using
+traceback.print_exception and appended to the stream.  If the stream
+has an ‘encoding’ attribute, it is used to determine how to do the
+output to the stream.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.StreamHandler.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.StreamHandler.flush" title="Link to this definition"></a></dt>
+<dd><p>Flushes the stream.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.logger.logging.StreamHandler.setStream">
+<span class="sig-name descname"><span class="pre">setStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.StreamHandler.setStream" title="Link to this definition"></a></dt>
+<dd><p>Sets the StreamHandler’s stream to the specified value,
+if it is different.</p>
+<p>Returns the old stream, if the stream was changed, or None
+if it wasn’t.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.logger.logging.StreamHandler.terminator">
+<span class="sig-name descname"><span class="pre">terminator</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n'</span></em><a class="headerlink" href="#app.logger.logging.StreamHandler.terminator" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.addLevelName">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">addLevelName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levelName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.addLevelName" title="Link to this definition"></a></dt>
+<dd><p>Associate ‘levelName’ with ‘level’.</p>
+<p>This is used when converting levels to text during message formatting.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.basicConfig">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">basicConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.basicConfig" title="Link to this definition"></a></dt>
+<dd><p>Do basic configuration for the logging system.</p>
+<p>This function does nothing if the root logger already has handlers
+configured, unless the keyword argument <em>force</em> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+It is a convenience method intended for use by simple scripts
+to do one-shot configuration of the logging package.</p>
+<p>The default behaviour is to create a StreamHandler which writes to
+sys.stderr, set a formatter using the BASIC_FORMAT format string, and
+add the handler to the root logger.</p>
+<p>A number of optional keyword arguments may be specified, which can alter
+the default behaviour.</p>
+<dl class="simple">
+<dt>filename  Specifies that a FileHandler be created, using the specified</dt><dd><p>filename, rather than a StreamHandler.</p>
+</dd>
+<dt>filemode  Specifies the mode to open the file, if filename is specified</dt><dd><p>(if filemode is unspecified, it defaults to ‘a’).</p>
+</dd>
+</dl>
+<p>format    Use the specified format string for the handler.
+datefmt   Use the specified date/time format.
+style     If a format string is specified, use this to specify the</p>
+<blockquote>
+<div><p>type of format string (possible values ‘%’, ‘{’, ‘$’, for
+%-formatting, <code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">string.Template</span></code>
+- defaults to ‘%’).</p>
+</div></blockquote>
+<p>level     Set the root logger level to the specified level.
+stream    Use the specified stream to initialize the StreamHandler. Note</p>
+<blockquote>
+<div><p>that this argument is incompatible with ‘filename’ - if both
+are present, ‘stream’ is ignored.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>handlers  If specified, this should be an iterable of already created</dt><dd><p>handlers, which will be added to the root logger. Any handler
+in the list which does not have a formatter assigned will be
+assigned the formatter created in this function.</p>
+</dd>
+<dt>force     If this keyword  is specified as true, any existing handlers</dt><dd><p>attached to the root logger are removed and closed, before
+carrying out the configuration as specified by the other
+arguments.</p>
+</dd>
+<dt>encoding  If specified together with a filename, this encoding is passed to</dt><dd><p>the created FileHandler, causing it to be used when the file is
+opened.</p>
+</dd>
+<dt>errors    If specified together with a filename, this value is passed to the</dt><dd><p>created FileHandler, causing it to be used when the file is
+opened in text mode. If not specified, the default value is
+<cite>backslashreplace</cite>.</p>
+</dd>
+</dl>
+<p>Note that you could specify a stream created using open(filename, mode)
+rather than passing the filename and mode in. However, it should be
+remembered that StreamHandler does not close its stream (since it may be
+using sys.stdout or sys.stderr), whereas FileHandler closes its stream
+when the handler is closed.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.2: </span>Added the <code class="docutils literal notranslate"><span class="pre">style</span></code> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.3: </span>Added the <code class="docutils literal notranslate"><span class="pre">handlers</span></code> parameter. A <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is now thrown for
+incompatible arguments (e.g. <code class="docutils literal notranslate"><span class="pre">handlers</span></code> specified together with
+<code class="docutils literal notranslate"><span class="pre">filename</span></code>/<code class="docutils literal notranslate"><span class="pre">filemode</span></code>, or <code class="docutils literal notranslate"><span class="pre">filename</span></code>/<code class="docutils literal notranslate"><span class="pre">filemode</span></code> specified
+together with <code class="docutils literal notranslate"><span class="pre">stream</span></code>, or <code class="docutils literal notranslate"><span class="pre">handlers</span></code> specified together with
+<code class="docutils literal notranslate"><span class="pre">stream</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.8: </span>Added the <code class="docutils literal notranslate"><span class="pre">force</span></code> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.9: </span>Added the <code class="docutils literal notranslate"><span class="pre">encoding</span></code> and <code class="docutils literal notranslate"><span class="pre">errors</span></code> parameters.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.captureWarnings">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">captureWarnings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capture</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.captureWarnings" title="Link to this definition"></a></dt>
+<dd><p>If capture is true, redirect all warnings to the logging package.
+If capture is False, ensure that warnings are not redirected to logging
+but to their original destinations.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.critical">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.critical" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘CRITICAL’ on the root logger. If the logger
+has no handlers, call basicConfig() to add a console handler with a
+pre-defined format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.debug">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.debug" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘DEBUG’ on the root logger. If the logger has
+no handlers, call basicConfig() to add a console handler with a pre-defined
+format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.disable">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.disable" title="Link to this definition"></a></dt>
+<dd><p>Disable all logging calls of severity ‘level’ and below.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.error">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.error" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘ERROR’ on the root logger. If the logger has
+no handlers, call basicConfig() to add a console handler with a pre-defined
+format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.exception">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.exception" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘ERROR’ on the root logger, with exception
+information. If the logger has no handlers, basicConfig() is called to add
+a console handler with a pre-defined format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.fatal">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">fatal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.fatal" title="Link to this definition"></a></dt>
+<dd><p>Don’t use this function, use critical() instead.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getLevelName">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getLevelName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getLevelName" title="Link to this definition"></a></dt>
+<dd><p>Return the textual or numeric representation of logging level ‘level’.</p>
+<p>If the level is one of the predefined levels (CRITICAL, ERROR, WARNING,
+INFO, DEBUG) then you get the corresponding string. If you have
+associated levels with names using addLevelName then the name you have
+associated with ‘level’ is returned.</p>
+<p>If a numeric value corresponding to one of the defined levels is passed
+in, the corresponding string representation is returned.</p>
+<p>If a string representation of the level is passed in, the corresponding
+numeric value is returned.</p>
+<p>If no matching numeric or string value is passed in, the string
+‘Level %s’ % level is returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getLogger">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getLogger" title="Link to this definition"></a></dt>
+<dd><p>Return a logger with the specified name, creating it if necessary.</p>
+<p>If no name is specified, return the root logger.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getLoggerClass">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getLoggerClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getLoggerClass" title="Link to this definition"></a></dt>
+<dd><p>Return the class to be used when instantiating a logger.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.info">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.info" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘INFO’ on the root logger. If the logger has
+no handlers, call basicConfig() to add a console handler with a pre-defined
+format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.log">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.log" title="Link to this definition"></a></dt>
+<dd><p>Log ‘msg % args’ with the integer severity ‘level’ on the root logger. If
+the logger has no handlers, call basicConfig() to add a console handler
+with a pre-defined format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.makeLogRecord">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">makeLogRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.makeLogRecord" title="Link to this definition"></a></dt>
+<dd><p>Make a LogRecord whose attributes are defined by the specified dictionary,
+This function is useful for converting a logging event received over
+a socket connection (which is sent as a dictionary) into a LogRecord
+instance.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.setLoggerClass">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">setLoggerClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">klass</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.setLoggerClass" title="Link to this definition"></a></dt>
+<dd><p>Set the class to be used when instantiating a logger. The class should
+define __init__() such that only a name argument is required, and the
+__init__() should call Logger.__init__()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.shutdown">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">handlerList=[&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D60FCDB5B0;</span> <span class="pre">to</span> <span class="pre">'_StderrHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D60D3E3FB0;</span> <span class="pre">to</span> <span class="pre">'NewLineStreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D60F87A250;</span> <span class="pre">to</span> <span class="pre">'WarningStreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D610D2EBB0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6115B8590;</span> <span class="pre">to</span> <span class="pre">'NullHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D611670680;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D611655990;</span> <span class="pre">to</span> <span class="pre">'NullHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6116D4E50;</span> <span class="pre">to</span> <span class="pre">'NullHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D612F36980;</span> <span class="pre">to</span> <span class="pre">'MemoryHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D613F89E40;</span> <span class="pre">to</span> <span class="pre">'EmptyLogger'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D613F8A160;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D613FF3A10;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D613FF3A60;</span> <span class="pre">to</span> <span class="pre">'PostgresLogHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004590;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004950;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614001580;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614001120;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004770;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140044A0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004EF0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140052B0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140056C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005BC0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140060C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140012B0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005F30;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005B70;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005030;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004D60;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004360;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614006340;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140067F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614006C50;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140071A0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140076F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614007380;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614006A20;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614006660;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140047C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005210;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614004F90;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140062F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614005FD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614007C40;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614044090;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140444F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614007E70;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614066930;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614066DE0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614067420;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142C87C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142C83B0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140679C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614074040;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614075C10;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614075FD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140763E0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140767A0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140767F0;</span> <span class="pre">to</span> <span class="pre">'PostgresLogHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142C9AD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142CA0C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142CAC50;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614067D30;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140771F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614076B10;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614076430;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142C9FD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6142CAA70;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140677E0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614007650;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D613F89FD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F8B80;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F8F90;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140764D0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614077060;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614077290;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F9670;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F4860;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F9CB0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140FA750;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140FBE70;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F5670;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F5260;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F4310;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F71F0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7600;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7A10;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7E20;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140D8220;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7BF0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7880;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F4450;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F41D0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7100;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F5210;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140FA2A0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140D9620;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140D9A30;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140FBD30;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F4270;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F4630;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DC090;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DC0E0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD170;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD530;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD580;</span> <span class="pre">to</span> <span class="pre">'PostgresLogHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7A60;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614075AD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D614075CB0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DB470;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DAED0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD0D0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DC860;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD5D0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DD9E0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DDDF0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DAF70;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140CC7C0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140CCBD0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140CCC20;</span> <span class="pre">to</span> <span class="pre">'PostgresLogHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DDF30;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140CE750;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140CE7A0;</span> <span class="pre">to</span> <span class="pre">'PostgresLogHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140762A0;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140F7560;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;,</span> <span class="pre">&lt;weakref</span> <span class="pre">at</span> <span class="pre">0x000001D6140DDA80;</span> <span class="pre">to</span> <span class="pre">'StreamHandler'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.shutdown" title="Link to this definition"></a></dt>
+<dd><p>Perform any cleanup actions in the logging system (e.g. flushing
+buffers).</p>
+<p>Should be called at application exit.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.warn">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">warn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.warn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.warning">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.warning" title="Link to this definition"></a></dt>
+<dd><p>Log a message with severity ‘WARNING’ on the root logger. If the logger has
+no handlers, call basicConfig() to add a console handler with a pre-defined
+format.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getLogRecordFactory">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getLogRecordFactory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getLogRecordFactory" title="Link to this definition"></a></dt>
+<dd><p>Return the factory to be used when instantiating a log record.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.setLogRecordFactory">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">setLogRecordFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.setLogRecordFactory" title="Link to this definition"></a></dt>
+<dd><p>Set the factory to be used when instantiating a log record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>factory</strong> – A callable which will be called to instantiate</p>
+</dd>
+</dl>
+<p>a log record.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getLevelNamesMapping">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getLevelNamesMapping</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getLevelNamesMapping" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getHandlerByName">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getHandlerByName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getHandlerByName" title="Link to this definition"></a></dt>
+<dd><p>Get a handler with the specified <em>name</em>, or None if there isn’t one with
+that name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.logger.logging.getHandlerNames">
+<span class="sig-prename descclassname"><span class="pre">app.logger.logging.</span></span><span class="sig-name descname"><span class="pre">getHandlerNames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.logger.logging.getHandlerNames" title="Link to this definition"></a></dt>
+<dd><p>Return all known handler names as an immutable set.</p>
+</dd></dl>
+
 </section>
 
 

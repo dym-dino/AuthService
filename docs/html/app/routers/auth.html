@@ -94,8 +94,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="auth">
-<h1>auth<a class="headerlink" href="#auth" title="Link to this heading"></a></h1>
+  <section id="module-app.routers.auth">
+<span id="auth"></span><h1>auth<a class="headerlink" href="#module-app.routers.auth" title="Link to this heading"></a></h1>
+<p>Auth Token</p>
+<p>Provides endpoints for token generation and refresh.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routers.auth.get_token">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.routers.auth.</span></span><span class="sig-name descname"><span class="pre">get_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/token.html#app.models.token.TokenRequest" title="app.models.token.TokenRequest"><span class="pre">TokenRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/routers/auth.html#get_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routers.auth.get_token" title="Link to this definition"></a></dt>
+<dd><p>Generates access and refresh tokens based on role and credentials.</p>
+<ul class="simple">
+<li><p>If role is <cite>user</cite>, only the secret hash is required.</p></li>
+<li><p>If role is <cite>admin</cite> or <cite>operator</cite>, login and password are also required.</p></li>
+<li><p>Automatically creates the user if they don’t exist.</p></li>
+<li><p>Returns access and refresh tokens.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.routers.auth.refresh_token">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.routers.auth.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/token.html#app.models.token.RefreshRequest" title="app.models.token.RefreshRequest"><span class="pre">RefreshRequest</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/app/routers/auth.html#refresh_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.routers.auth.refresh_token" title="Link to this definition"></a></dt>
+<dd><p>Issues a new access token using a valid refresh token.</p>
+<ul class="simple">
+<li><p>Requires a valid JWT refresh token in the request body.</p></li>
+<li><p>Verifies that the token is of type ‘refresh’.</p></li>
+<li><p>Returns a new access token.</p></li>
+</ul>
+</dd></dl>
+
 </section>
 
 

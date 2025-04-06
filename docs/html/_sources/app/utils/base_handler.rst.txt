@@ -6,3 +6,9 @@ base_handler
    :undoc-members:
    :show-inheritance:
 
+Constants
+---------
+
+.. py:data:: F
+
+

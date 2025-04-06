@@ -1,6 +1,10 @@
 logger
 ======
 
+Logger Module
+
+Provides logging utilities for the application.
+
 .. contents::
    :local:
    :depth: 2
